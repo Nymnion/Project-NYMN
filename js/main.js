@@ -1,13 +1,28 @@
 //onload waits for page to load before running
 window.onload = function () {
-  //TMI STUFF
   const client = new tmi.Client({
     channels: ["nymn"],
   });
   client.connect();
 
-  //fires everytime a message is sent
   client.on("message", (channel, tags, message, self) => {
+    document.getElementById("chat").innerText += `${tags["username"]}: ${message}\n`;
+  });
+
+  document.getElementById("save-chat").addEventListener("click", saveLast100Lines);
+};
+
+function saveLast100Lines() {
+  const chat = document.getElementById("chat");
+  const lines = chat.innerText.split("\n");
+  const last100Lines = lines.slice(Math.max(lines.length - 101, 0), lines.length - 1).join("\n");
+
+  console.log(last100Lines); // Use the last100Lines variable as needed
+}
+
+
+
+
     //channel: channel name with a # - use channel.substring(1) to remove the #.
     //message: the chat message that the user sent.
     //self: set to true if the received message was sent by you, will always be false here because we are not logged in.
@@ -37,6 +52,3 @@ window.onload = function () {
     // }
 
     //prepend the received chat message to the chat div
-    document.getElementById("chat").innerText += `${tags["username"]}: ${message}\n`;
-  });
-};

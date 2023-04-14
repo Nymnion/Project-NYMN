@@ -1,9 +1,27 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-  }
+  background: linear-gradient(135deg, #0D1B2A, #1B263B, #415A77, #778DA9, #E0E1DD);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
 
-  h1 {
-    color: #4a4a4a;
-    font-size: 36px;
-  }
+#chat-container {
+  padding: 1rem;
+  width: 60%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.24);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+  border: 1px solid rgba(255, 255, 255, 0.33);
+}
+
+#chat {
+  white-space: pre-wrap;
+  font-size: 16px;
+  color: #E0E1DD;
+}
