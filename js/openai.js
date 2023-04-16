@@ -1,4 +1,4 @@
-async function sendChatToOpenAI(apiKey, messages, temperature = 0.7) {
+async function sendChatToOpenAI(messages, temperature = 0.7) {
     const API_URL = 'https://api.openai.com/v1/chat/completions';
   
     const headers = new Headers({
@@ -8,7 +8,7 @@ async function sendChatToOpenAI(apiKey, messages, temperature = 0.7) {
   
     const requestBody = JSON.stringify({
       model: 'gpt-3.5-turbo',
-      messages: messages,
+      messages: [{ role: 'user', content: messages }], 
       temperature: temperature,
     });
   
@@ -30,6 +30,7 @@ async function sendChatToOpenAI(apiKey, messages, temperature = 0.7) {
     }
 
 
+console.log(messages);
  
   }
   

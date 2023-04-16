@@ -48,9 +48,10 @@ function saveLast100Lines() {
 
   const last100Lines = uniqueLines.slice(Math.max(uniqueLines.length - 100, 0)).join("\n");
 
+
   console.log(last100Lines);  // Use the last100Lines variable as needed
 
-sendChatToOpenAI();
+  sendChatToOpenAI(last100Lines);
 
 }
 
