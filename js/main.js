@@ -1,4 +1,8 @@
 //onload waits for page to load before running
+
+const repetitionThreshold = 2;
+const maxLength = 75;
+
 window.onload = function () {
   const client = new tmi.Client({
     channels: ["nymn"],
@@ -12,13 +16,44 @@ window.onload = function () {
   document.getElementById("save-chat").addEventListener("click", saveLast100Lines);
 };
 
+function isLowValueMessage(message) {
+  // You can modify this function to define more criteria for low-value messages
+  const trimmedMessage = message.trim();
+  return trimmedMessage.length === 0 || trimmedMessage.startsWith('!') || /^\s*$/.test(message);
+}
+
+
+function isLowValueMessage(message) {
+  // You can modify this function to define more criteria for low-value messages
+  const trimmedMessage = message.trim();
+  return trimmedMessage.length === 0 || trimmedMessage.startsWith('!') || /^\s*$/.test(message);
+}
+
 function saveLast100Lines() {
   const chat = document.getElementById("chat");
   const lines = chat.innerText.split("\n");
-  const last100Lines = lines.slice(Math.max(lines.length - 101, 0), lines.length - 1).join("\n");
+  const cleanedLines = lines.filter(line => {
+    const message = line.trim();
+    return message.length <= maxLength && !isLowValueMessage(message);
+  });
 
-  console.log(last100Lines); // Use the last100Lines variable as needed
+  const uniqueLines = [];
+  cleanedLines.forEach(line => {
+    const recentMessages = uniqueLines.slice(-repetitionThreshold);
+    const repeatCount = recentMessages.filter(recent => recent === line).length;
+    if (repeatCount < repetitionThreshold) {
+      uniqueLines.push(line);
+    }
+  });
+
+  const last100Lines = uniqueLines.slice(Math.max(uniqueLines.length - 100, 0)).join("\n");
+
+  console.log(last100Lines);  // Use the last100Lines variable as needed
+
+sendChatToOpenAI();
+
 }
+
 
 
 
