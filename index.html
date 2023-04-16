@@ -8,22 +8,27 @@
   </head>
 
   <body>
+    <div id="page-container">
+      <div id="chat-container">
+        <div id="chat-inner-container">
+          <div id="chat"></div>
+        </div>
+      </div>
+      
+      <form id="question-form">
+        <label for="question-input">Question for chat:</label>
+        <input type="text" id="question-input" />
+      </form>
 
-
-    <div id="chat-container">
       <div id="button-container">
         <button id="save-chat" type="button">DO DA MAGIC</button>
         <button id="api-key" type="button">API Key</button>
       </div>
-      <div id="chat-inner-container">
-        <div id="chat"></div>
 
-
+      <div id="response-container">
+        <div id="openai-response"></div>
       </div>
-
     </div>
-
-    <div id="placeholder-container">testge</div>
 
     <script src="/js/api-key.js"></script>
     <script src="/js/openai.js"></script>

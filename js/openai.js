@@ -1,4 +1,15 @@
-async function sendChatToOpenAI(messages, temperature = 0.7) {
+document.getElementById('save-chat').addEventListener('click', async () => {
+    const questionInput = document.getElementById('question-input');
+    const question = questionInput.value.trim();
+    if (question) {
+      const messages = "Chat logs go here"; // Replace this with your actual chat logs
+      await sendChatToOpenAI(messages, question);
+    } else {
+      alert('Please enter a question');
+    }
+  });
+  
+  async function sendChatToOpenAI(messages, question, temperature = 0.7) {
     const API_URL = 'https://api.openai.com/v1/chat/completions';
   
     const headers = new Headers({
@@ -8,7 +19,16 @@ async function sendChatToOpenAI(messages, temperature = 0.7) {
   
     const requestBody = JSON.stringify({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: messages }], 
+      messages: [
+        {
+          role: 'user',
+          content:
+            'The following is a 100 lines from a Twitch chat answering the question: ' +
+            question +
+            'Make a brief list of the best replies. For each entry, present the author of the message and what they meant with their message. Use the style of roasting them. ' +
+            messages,
+        },
+      ],
       temperature: temperature,
     });
   
@@ -21,6 +41,8 @@ async function sendChatToOpenAI(messages, temperature = 0.7) {
   
       if (response.ok) {
         const data = await response.json();
+        const openAIResponse = data.choices[0].message.content;
+        displayOpenAIResponse(openAIResponse);
         return data;
       } else {
         throw new Error(`API request failed with status ${response.status}`);
@@ -28,9 +50,14 @@ async function sendChatToOpenAI(messages, temperature = 0.7) {
     } catch (error) {
       console.error(`Error while sending chat data to OpenAI: ${error}`);
     }
-
-
-console.log(messages);
- 
   }
   
+  function displayOpenAIResponse(response) {
+    const responseElement = document.getElementById('openai-response');
+   
+    if (responseElement) {
+        responseElement.innerText = response;
+        } else {
+        console.error('Unable to find the HTML element with the ID "openai-response"');
+        }
+        }
