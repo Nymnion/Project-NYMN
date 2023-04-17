@@ -10,7 +10,20 @@ window.onload = function () {
   client.connect();
 
   client.on("message", (channel, tags, message, self) => {
-    document.getElementById("chat").innerText += `${tags["username"]}: ${message}\n`;
+    let userNameSpan = document.createElement("span");
+    let messageSpan = document.createElement("span");
+    let brTag = document.createElement("br");
+
+    userNameSpan.style.color = tags["color"];
+    userNameSpan.innerHTML = tags["username"] + ": ";
+
+    messageSpan.innerHTML = message;
+
+    document.getElementById("chat").appendChild(userNameSpan);
+    document.getElementById("chat").appendChild(messageSpan);
+    document.getElementById("chat").appendChild(brTag);
+    
+    //document.getElementById("chat").innerText += `${tags["username"]}: ${message}\n`;
   });
 
   document.getElementById("save-chat").addEventListener("click", saveLast100Lines);
