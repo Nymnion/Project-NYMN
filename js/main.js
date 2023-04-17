@@ -51,7 +51,15 @@ function saveLast100Lines() {
 
   console.log(last100Lines);  // Use the last100Lines variable as needed
 
-  sendChatToOpenAI(last100Lines);
+  // Checks if there is a question in the text box
+  const questionInput = document.getElementById('question-input');
+  const question = questionInput.value.trim();
+  if (!question) {
+    alert('Please enter a question');
+    return;
+  }
+
+  sendChatToOpenAI(last100Lines, question);
 
 }
 
