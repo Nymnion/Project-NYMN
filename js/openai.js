@@ -1,15 +1,5 @@
-document.getElementById('save-chat').addEventListener('click', async () => {
-    const questionInput = document.getElementById('question-input');
-    const question = questionInput.value.trim();
-    if (question) {
-      const messages = "Chat logs go here"; // Replace this with your actual chat logs
-      await sendChatToOpenAI(messages, question);
-    } else {
-      alert('Please enter a question');
-    }
-  });
-  
   async function sendChatToOpenAI(messages, question, temperature = 0.7) {
+
     const API_URL = 'https://api.openai.com/v1/chat/completions';
   
     const headers = new Headers({
@@ -23,9 +13,9 @@ document.getElementById('save-chat').addEventListener('click', async () => {
         {
           role: 'user',
           content:
-            'The following is a 100 lines from a Twitch chat answering the question: ' +
+            'The following is a 100 lines from a Twitch chat answering the question: "' +
             question +
-            'Make a brief list of the best replies. For each entry, present the author of the message and what they meant with their message. Use the style of roasting them. ' +
+            '" Make a brief list of the best replies. For each entry, present the author of the message and what they meant with their message. Use the style of roasting them. ' +
             messages,
         },
       ],
