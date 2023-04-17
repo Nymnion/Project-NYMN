@@ -15,9 +15,9 @@ window.onload = function () {
     let brTag = document.createElement("br");
 
     userNameSpan.style.color = tags["color"];
-    userNameSpan.innerHTML = tags["username"] + ": ";
+    userNameSpan.textContent  = tags["username"] + ": ";
 
-    messageSpan.innerHTML = message;
+    messageSpan.textContent  = message;
 
     document.getElementById("chat").appendChild(userNameSpan);
     document.getElementById("chat").appendChild(messageSpan);
