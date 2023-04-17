@@ -13,8 +13,8 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto;
   gap: 1rem;
-  width: 50vw;
-  max-width: 800px;
+  width: 85vw;
+  max-width: 900px;
 }
 
 #button-container {
