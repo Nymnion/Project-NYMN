@@ -15,7 +15,7 @@
           content:
             'The following is a 100 lines from a Twitch chat answering the question: "' +
             question +
-            '" Make a brief list of the best replies. For each entry, present the author of the message and what they meant with their message. Use the style of roasting them. ' +
+            '" | Format the answers and present back the top 10 answers in an HTML table that covers the user, their reply, your rating of their comment, and a small review that roasts their reply. Here are the chat logs:' +
             messages,
         },
       ],
@@ -44,10 +44,11 @@
   
   function displayOpenAIResponse(response) {
     const responseElement = document.getElementById('openai-response');
-   
+  
     if (responseElement) {
-        responseElement.innerText = response;
-        } else {
-        console.error('Unable to find the HTML element with the ID "openai-response"');
-        }
-        }
+      responseElement.innerHTML = response;
+    } else {
+      console.error('Unable to find the HTML element with the ID "openai-response"');
+    }
+  }
+  
