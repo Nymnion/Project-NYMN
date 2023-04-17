@@ -10,7 +10,20 @@ window.onload = function () {
   client.connect();
 
   client.on("message", (channel, tags, message, self) => {
-    document.getElementById("chat").innerText += `${tags["username"]}: ${message}\n`;
+    let userNameSpan = document.createElement("span");
+    let messageSpan = document.createElement("span");
+    let brTag = document.createElement("br");
+
+    userNameSpan.style.color = tags["color"];
+    userNameSpan.innerHTML = tags["username"] + ": ";
+
+    messageSpan.innerText = message;
+
+    document.getElementById("chat").appendChild(userNameSpan);
+    document.getElementById("chat").appendChild(messageSpan);
+    document.getElementById("chat").appendChild(brTag);
+    
+    //document.getElementById("chat").innerText += `${tags["username"]}: ${message}\n`;
   });
 
   document.getElementById("save-chat").addEventListener("click", saveLast100Lines);
@@ -46,7 +59,7 @@ function saveLast100Lines() {
     }
   });
 
-  const last100Lines = uniqueLines.slice(Math.max(uniqueLines.length - 100, 0)).join("\n");
+  const last100Lines = uniqueLines.slice(Math.max(uniqueLines.length - 500, 0)).join("\n");
 
 
   console.log(last100Lines);  // Use the last100Lines variable as needed
