@@ -28,7 +28,7 @@
         method: 'POST',
         headers: headers,
         body: requestBody,
-      })
+      });
 
       response_box = "";
 
@@ -38,7 +38,7 @@
         if (done) {
           return;
         }
-        addToResponseBox(value)
+        addToResponseBox(value);
       }
     } catch (error) {
       console.error(`Error while sending chat data to OpenAI: ${error}`);
