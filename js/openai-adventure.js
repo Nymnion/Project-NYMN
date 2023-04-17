@@ -1,4 +1,4 @@
-  async function sendChatToOpenAI(messages, question, temperature = 0.7) {
+async function sendChatToOpenAI(messages, question, temperature = 0.7) {
 
     const API_URL = 'https://api.openai.com/v1/chat/completions';
   
@@ -13,9 +13,9 @@
         {
           role: 'user',
           content:
-            'The following is a 100 lines from a Twitch chat answering the question: "' +
+            'The following is 500 lines from a Twitch chat joining the streamer adventure about: "' +
             question +
-            '" | Format the answers and present back the top 10 answers in an HTML table that covers the user, their reply, your rating of their comment, and a small review that roasts their reply. Here are the chat logs:' +
+            '" | Format the answer into an HTML table and list the best characters & their actions. Here are the chat logs:' +
             messages,
         },
       ],
