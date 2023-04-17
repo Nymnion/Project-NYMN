@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(135deg, #0D1B2A, #1B263B, #415A77, #778DA9, #E0E1DD);
+  background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77, #778da9, #e0e1dd);
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color: #E0E1DD;
+  color: #e0e1dd;
   background: rgba(255, 255, 255, 0.24);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -55,24 +55,23 @@ button:hover {
   background: rgba(255, 255, 255, 0.24);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5.5
-  5px);
+  backdrop-filter: blur(5.5 5px);
   -webkit-backdrop-filter: blur(5.5px);
   border: 1px solid rgba(255, 255, 255, 0.33);
   padding: 1rem;
-  color: #E0E1DD;
+  color: #e0e1dd;
   overflow: hidden;
   height: calc(75% - 1rem);
   max-height: 75vh;
-  }
-  
-  #chat-container {
+}
+
+#chat-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  }
-  
-  #chat-inner-container {
+}
+
+#chat-inner-container {
   position: relative;
   overflow-y: scroll;
   scrollbar-width: thin;
@@ -80,52 +79,51 @@ button:hover {
   height: 100%;
   max-height: 100%;
   max-width: 100%;
-  }
-  
-  #chat-inner-container::-webkit-scrollbar {
+}
+
+#chat-inner-container::-webkit-scrollbar {
   width: 8px;
-  }
-  #chat-inner-container::-webkit-scrollbar-track {
+}
+#chat-inner-container::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
-  }
-  
-  #chat-inner-container::-webkit-scrollbar-thumb {
+}
+
+#chat-inner-container::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.33);
   border-radius: 4px;
-  }
-  
-  #chat {
+}
+
+#chat {
   white-space: pre-wrap;
   font-size: 16px;
-  color: #E0E1DD;
+  color: #e0e1dd;
   padding: 1rem;
   width: 100%;
-  }
-  
-  #openai-response {
-    white-space: pre-wrap;
-    font-size: 16px;
-    padding: 1rem;
-    overflow-y: auto;
-    height: 300px; /* Adjust the height as needed */
-  }
-  
-  /* Customize the scrollbar */
-  #openai-response::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  #openai-response::-webkit-scrollbar-track {
-    background-color: #F5F5F5;
-    border-radius: 10px;
-  }
-  
-  #openai-response::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 10px;
-  }
-  
-  #openai-response::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-  }
-  
+}
+
+#openai-response {
+  white-space: pre-wrap;
+  font-size: 16px;
+  padding: 1rem;
+  overflow-y: auto;
+  height: 300px; /* Adjust the height as needed */
+}
+
+/* Customize the scrollbar */
+#openai-response::-webkit-scrollbar {
+  width: 10px;
+}
+
+#openai-response::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+#openai-response::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+#openai-response::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
