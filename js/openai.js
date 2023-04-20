@@ -19,6 +19,7 @@ async function sendChatToOpenAI(messages, question, temperature = 0.7) {
       },
     ],
     temperature: temperature,
+    stream: true,
   });
 
   try {
@@ -28,24 +29,53 @@ async function sendChatToOpenAI(messages, question, temperature = 0.7) {
       body: requestBody,
     });
 
-    if (response.ok) {
-      const data = await response.json();
-      const openAIResponse = data.choices[0].message.content;
-      displayOpenAIResponse(openAIResponse);
-      return data;
-    } else {
-      throw new Error(`API request failed with status ${response.status}`);
+    response_box = "";
+
+    const reader = response.body.getReader();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) {
+        return;
+      }
+      addToResponseBox(value);
     }
   } catch (error) {
     console.error(`Error while sending chat data to OpenAI: ${error}`);
   }
 }
 
-function displayOpenAIResponse(response) {
+let response_box = "";
+
+function addToResponseBox(uint8Array) {
+  let string = new TextDecoder().decode(uint8Array);
+
+  if (string.includes("data: [DONE]")) {
+    return;
+  }
+
+  const regex = /data: {.*}/g;
+
+  const ArrayOfData = string.match(regex);
+
+  for (let data of ArrayOfData) {
+    data = data.replace("data: ", "");
+
+    const object = JSON.parse(data.replace("data: ", ""));
+
+    const response = object.choices[0].delta.content;
+
+    if (response) {
+      response_box += response;
+    }
+    displayOpenAIResponse();
+  }
+}
+
+function displayOpenAIResponse() {
   const responseElement = document.getElementById("openai-response");
 
   if (responseElement) {
-    responseElement.innerHTML = response;
+    responseElement.innerHTML = response_box;
   } else {
     console.error('Unable to find the HTML element with the ID "openai-response"');
   }
